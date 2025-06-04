@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anniversary Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    #surpriseText {
+      display: none;
+      font-size: 2.5rem;
+      color: white;
+      background: linear-gradient(45deg, #ff6a00, #ee0979, #ff6a00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .hearts {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 4s infinite;
+      color: red;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-600px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background-color: white;
+      color: #ff5e78;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background-color: #ffdde1;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <button onclick="showSurprise()">Here Is a Suprise 💕</button>
+  <div id="surpriseText">Happy 7th Anniversary, My Love! 💖</div>
+</div>
+
+<script>
+  function showSurprise() {
+    document.getElementById('surpriseText').style.display = 'block';
+    generateHearts();
+  }
+
+  function generateHearts() {
+    for (let i = 0; i < 50; i++) {
+      let heart = document.createElement("div");
+      heart.className = "hearts";
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+  }
+</script>
+
+</body>
+</html>
